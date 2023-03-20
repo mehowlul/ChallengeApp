@@ -3,21 +3,51 @@ namespace ChallengeApp.Tests
     public class EmployeeTests
     {
         [Test]
-        public void WhenEmployeeColletctsSetOfPoints_ShouldReturnCorrectResult()
+        public void WhenGetStatisticsIsUsed_ShouldReturnCorrectMax()
         {
             // arrange
-            var employee4 = new Employee("Kazimierz", "Wielki", 45);
-            employee4.AddGrade(6);
-            employee4.AddGrade(7);
-            employee4.AddGrade(4);
-            employee4.AddGrade(-2);
-            employee4.AddGrade(-2); 
-
+            var employee = new Employee("Kazimierz", "Wielki");
+            employee.AddGrade(2);
+            employee.AddGrade(2);
+            employee.AddGrade(6);
+            
             // act
-            var grade = employee4.AddGrade;
+            var statistics = employee.GetStatistics();
 
             //assert
+            Assert.AreEqual(6, statistics.Max);
+        }
+        
+        [Test]
+        public void WhenGetStatisticsIsUsed_ShouldReturnCorrectMin()
+        {
+            // arrange
+            var employee = new Employee("Kazimierz", "Wielki");
+            employee.AddGrade(2);
+            employee.AddGrade(2);
+            employee.AddGrade(6);
            
+            // act
+            var statistics = employee.GetStatistics();
+
+            //assert
+            Assert.AreEqual(2, statistics.Min);
+        }
+
+        [Test]
+        public void WhenGetStatistics_ShouldReturnCorrectAverage()
+        {
+            // arrange
+            var employee = new Employee("Kazimierz", "Wielki");
+            employee.AddGrade(2);
+            employee.AddGrade(2);
+            employee.AddGrade(6);
+           
+            // act
+            var statistics = employee.GetStatistics();
+
+            //assert
+            Assert.AreEqual(Math.Round(3.33, 2), Math.Round(statistics.Average, 2));
         }
     }
 }
