@@ -35,7 +35,7 @@ namespace ChallengeApp.Tests
         }
 
         [Test]
-        public void WhenGetStatistics_ShouldReturnCorrectAverage()
+        public void WhenGetStatisticsIsUsed_ShouldReturnCorrectAverage()
         {
             // arrange
             var employee = new Employee("Kazimierz", "Wielki");
