@@ -8,15 +8,12 @@ namespace ChallengeApp
     public class Employee
     {
         private List<float> grades = new List<float>();
-        public Employee(string name, string surname)
+
+        public Employee()
         {
-            this.Name = name;
-            this.Surname = surname;
         }
 
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-
+        
         public void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
@@ -25,13 +22,46 @@ namespace ChallengeApp
             }
             else
             {
-                Console.WriteLine("Invalid grade value");
+                Console.WriteLine("Nieprawidłowa wartość (poza zakresem 0 do 100)");
             }
         }
 
         public void AddGrade(int grade)
         {
             float gradeAsFloat = (int)grade;
+            this.AddGrade(gradeAsFloat);
+        }
+
+        public void AddGrade(char grade)
+        {
+            switch (grade)
+            {
+                case 'A':
+                case 'a':
+                    this.grades.Add(100);
+                    break;
+                case 'B':
+                case 'b':
+                    this.grades.Add(80);
+                    break;
+                case 'C':
+                case 'c':
+                    this.grades.Add(60);
+                    break;
+                case 'D':
+                case 'd':
+                    this.grades.Add(40);
+                    break;
+                case 'E':
+                case 'e':
+                    this.grades.Add(20);
+                    break;
+                default:
+                    Console.WriteLine("Nieprawidłowa litera! Nie A-E lub a-e ");
+                    break;
+            }
+
+            float gradeAsFloat = (char)grade;
             this.AddGrade(gradeAsFloat);
         }
 
@@ -54,7 +84,7 @@ namespace ChallengeApp
             }
             else
             {
-                Console.WriteLine("String is not float");
+                Console.WriteLine("String nie jest float'em!");
             }
         }
 
@@ -74,9 +104,29 @@ namespace ChallengeApp
                     statistics.Average += grade;
                 }
             }
+
             statistics.Average /= this.grades.Count;
+
+            switch (statistics.Average)
+            {
+                case var average when average >= 80:
+                    statistics.AverageLetter = 'A';
+                    break;
+                case var average when average >= 60:
+                    statistics.AverageLetter = 'B';
+                    break;
+                case var average when average >= 40:
+                    statistics.AverageLetter = 'C';
+                    break;
+                case var average when average >= 20:
+                    statistics.AverageLetter = 'D';
+                    break;
+                default:
+                    statistics.AverageLetter = 'E';
+                    break;
+            }
+
             return statistics;
         }
-
     }
 }
