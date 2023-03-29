@@ -13,7 +13,7 @@ namespace ChallengeApp
         {
         }
 
-        
+
         public void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
@@ -30,6 +30,22 @@ namespace ChallengeApp
         {
             float gradeAsFloat = (int)grade;
             this.AddGrade(gradeAsFloat);
+        }
+        public void AddGrade(string grade)
+        {
+            if (float.TryParse(grade, out float result))
+            {
+                this.AddGrade(result);
+            }
+            else if (char.TryParse(grade, out char stringToChar))
+            {
+                this.AddGrade(stringToChar);
+            }
+
+            else
+            {
+                Console.WriteLine("String nie jest liczbą!");
+            }
         }
 
         public void AddGrade(char grade)
@@ -57,12 +73,10 @@ namespace ChallengeApp
                     this.grades.Add(20);
                     break;
                 default:
-                    Console.WriteLine("Nieprawidłowa litera! Nie A-E lub a-e ");
+                    Console.WriteLine("Nieprawidłowa litera! Nie pochodzi z zakresu A-E lub a-e ");
                     break;
             }
 
-            float gradeAsFloat = (char)grade;
-            this.AddGrade(gradeAsFloat);
         }
 
         public void AddGrade(double grade)
@@ -76,17 +90,6 @@ namespace ChallengeApp
             this.AddGrade(gradeAsFloat);
         }
 
-        public void AddGrade(string grade)
-        {
-            if (float.TryParse(grade, out float result))
-            {
-                this.AddGrade(result);
-            }
-            else
-            {
-                Console.WriteLine("String nie jest float'em!");
-            }
-        }
 
         public Statistics GetStatistics()
         {

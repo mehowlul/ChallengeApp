@@ -8,7 +8,9 @@ var employee = new Employee();
 
 while (true)
 {
-    Console.WriteLine("Podaj kolejną ocenę pracownika (znak q lub Q aby wyjść): ");
+    Console.WriteLine("Podaj kolejną ocenę pracownika z zakresu 0-100 lub A-E lub a-e (gdzie A/a=100, B/b=80, lub C/c=60, D/d=40, E/e=20)");
+    Console.WriteLine("(znak Q lub q aby wyjść): ");
+
     var input = Console.ReadLine();
     if (input == "q")
     {
